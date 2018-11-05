@@ -1,0 +1,79 @@
+******************************************************************************************                                 GOD first                                             *
+*Name: Dustin Ledbetter                                                                 *
+*Date: 11-02-2018                                                                       *
+*Pageflex Extension: ExcludeHandlingExtension                                           *
+*Purpose: A guide to walk a user through the installation of ExcludeHandlingExtension   *
+*****************************************************************************************
+
+Deployment Instructions
+=======================
+
+---------------------
+-Installation Part 1- [Find the extension on an already existing site or from repository]
+---------------------
+ 
+This extension should be installed on several sites already where you can find it and just copy and paste it to the desired site you need it on. 
+
+Where to look on the existing site Ram:
+	1.  Find the deployment of the site (D:\\Pageflex\\Deployments\\Storefront)
+	2.  Traverse to the bin folder of the site chosen. (\Storefront\WebPages\bin)
+	3.  Find the folder named "ExcludeHandlingExtension"
+
+
+---------------------
+-Installation Part 2- [install the extension to a NEW Pageflex deployment]
+---------------------
+
+1.	Copy the folder to the new deployment's bin folder. (\NewStorefront\WebPages\bin)
+2.     Create a folder named 'Logs' in the new deployment. (\NewStorefront\)
+*(If there is not a Logs folder then the extension will not work)*
+
+
+
+*(If the extension is already in the list of existing extensions and is not set to active: Check the box next to the extension (Service: ExcludeHandlingExtension) and click 'Enable' to enable the extension.)*
+
+
+*(If the extension is NOT already present in the list of extensions in the site's Admin portal then follow the steps below)*
+
+1.     Login to the Admin portal of the storefront
+2.	Under the 'Administration' section click 'Extensions'
+3.	Click the 'Add New' button
+4.	Enter the path: 'ExcludeHandlingExtension\ExcludeHandlingExtension.dll'
+5.	Select *.NET Assembly (DLL)* as the assembly type
+6.     Check the 'active' box to be true
+7.	Click 'Continue'
+8.     Log on as a user and place a test order to see that the tax rates are being set.  
+
+
+---------------
+-Configuration-
+---------------
+1.	Login to the Admin portal of the storefront
+2.	Under the 'Administration' section click 'Extensions'
+3.	Click the extension name: "ExcludeHandlingExtension" to begin configuration
+4.	Here you can turn debug mode 'on' or 'off'
+*(If it is turned on then when the extension is called it will log messages to the 
+   storefront logs tab and also it will log to a .txt file with the current date 
+   in the 'Logs' folder we created in the storefront’s deployment)*
+5.	Click 'Update' to save the configuration
+
+---------------------------------------------------
+-The extension is now installed and ready to use. –
+---------------------------------------------------
+
+Note of this extension:
+
+For this extension to work with the items in the storefront a metadata field: 'excludeHandling' must be created on the 'Metadata Fields' page.
+
+To do this:
+1.	Login to the Admin portal of the storefront
+2.	Under the 'Content' section click 'Metadata Fields'
+3.	Click 'Add New'
+4.     Name it 'excludeHandling'
+5.     Give it a display label of 'Exclude Handling Fee:'
+6.     Make it a dropdown list box with the values 'Yes' and 'No'
+7.     Set the default value to be 'No'
+8.     Hit 'update'
+ 
+
+Then you just go to each item in the storefront that you wish to have handling excluded from and set the metadata field for that product to be set to 'Yes'

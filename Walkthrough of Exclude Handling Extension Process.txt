@@ -1,0 +1,38 @@
+******************************************************************************************                                 GOD first                                             *
+*Name: Dustin Ledbetter                                                                 *
+*Date: 11-02-2018                                                                       *
+*Pageflex Extension: ExcludeHandlingExtension                                           *
+*Purpose: A step by step explanation of what the ExcludeHandlingExtension does          *
+*****************************************************************************************
+
+Walkthrough of the Process to Exclude Handling for Certain Items
+================================================================
+
+-------------------------------------------------
+-Steps the user takes before the extension runs:-
+-------------------------------------------------
+*(Let’s walk through the process the user follows to activate ExcludeHandlingExtension)*
+
+1. Login to the User Portal of the storefront
+2. The user browses the storefront and places an item in their shopping cart
+3. From the shopping cart the user hits the button 'Proceed to Checkout'
+*(Once the user hits 'Proceed to Checkout' the ExcludeHandlingExtension runs)*
+
+-----------------------------------------
+-The Process of the ExcludeHandlingExtension - 
+-----------------------------------------
+1. The method 'IsModuleType' which is checking to see if we are on the shipping page gets flagged to true the moment the user chooses to proceed form their 'Shopping Cart' to the 'Shipping Page'. This tells the extension it will be ran soon and waits till the method we are going to override is called upon.
+
+2. Once the user presses the 'Proceed to Checkout' button our extension calls the section called 'CheckoutSteps_Before' which saves the current stores handling charge for use when we do not need to exclude handling (This is done, because we are overriding the current value when we call the 'CalculateHandlingCharge' method). It also calls 'ValidateDocument' for each item in the cart to determine and set flags for whether the handling should be excluded or not.
+
+3. After the stores original values are saved and we have checked each item in the cart while setting the flags determining if handling is excluded or not, we move on to the actual method to change the handling.
+
+4. The method 'CalculateHandlingCharge' is responsible for this. Here we check the flags that have been set and based on those we either exclude the handling charge or we set the charge to back to the original value we saved earlier.
+
+5. Once the user completes the steps to enter their address info and they hit the 
+'Update Shipping Charges' button on the 'Shipping Page' the storefront runs several methods to calculate the subtotal, shipping fees, handling fees, and taxes for the customer’s order. This is the point our 'CalculateHandlingCharge' is called.
+
+*(At This point we end our interruption and let the storefront finish its process so it can then display the shipping charge, our new handling charge, subtotal, and the tax rate to the user)*
+
+
+
